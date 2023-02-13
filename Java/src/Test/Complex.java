@@ -40,16 +40,16 @@ public class Complex {
   
   
   public Complex multiply(Complex otherNumber) {
-    double real = (this.realPart * otherNumber.realPart);
-    double imaginary = (this.imaginaryPart * otherNumber.imaginaryPart);
+    double real = (this.realPart * otherNumber.realPart) - (this.imaginaryPart * otherNumber.imaginaryPart);
+    double imaginary = (this.realPart * otherNumber.imaginaryPart) + (this.imaginaryPart * otherNumber.realPart);
     return new Complex(real, imaginary);
   }
   
   
   public Complex divide(Complex otherNumber) {
-    
-    double real = (this.realPart / otherNumber.realPart);
-    double imaginary = (this.imaginaryPart / otherNumber.imaginaryPart);
+    double denominator = Math.pow(otherNumber.realPart, 2) + Math.pow(otherNumber.imaginaryPart, 2);
+    double real = ((this.realPart * otherNumber.realPart) + (this.imaginaryPart * otherNumber.imaginaryPart)) / denominator;
+    double imaginary = ((this.imaginaryPart * otherNumber.realPart) - (this.realPart * otherNumber.imaginaryPart)) / denominator;
     return new Complex(real, imaginary);
   }
   
@@ -75,7 +75,7 @@ public class Complex {
   
   
   public String toString() {
-    return this.realPart + " + " + this.imaginaryPart;
+    return this.realPart + " + " + this.imaginaryPart + "i";
   }
 }
 
